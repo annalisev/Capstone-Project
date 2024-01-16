@@ -26,13 +26,19 @@ def get_col(user):
     # Function which asks which column the user wants to put their counter in then returns this accounting for indexing
     col = 0
     while col == 0:
-        inp = int(input(
-            f'{user}, which column would you like to place your counter in? Enter a number between 1 and 7: '))
-        if height_vals[inp-1] != 6:
-            col = inp
-        else:
-            print('Counter could not be placed, that column is already full!'
-                  )
+        try:
+            inp = int(input(
+                f'{user}, which column would you like to place your counter in? Enter a number between 1 and 7: '))
+            if inp >= 1 and inp <= 7:
+                if height_vals[inp-1] != 6:
+                    col = inp
+                else:
+                    print('Counter could not be placed, that column is already full!'
+                          )
+            else:
+                print('Out of range, counter cannot be placed.')
+        except:
+            print('Invalid input')
     return col - 1
 
 
@@ -230,7 +236,7 @@ if game_type == 'C':
 
     user_colour = 0
     current_player = 0
-    player_name = input('What is your name?: ')
+    player_name = input('What is your name?: ').capitalize()
 
     # Asking the user which colour they want to be, in a while loop to ensure question gets answered even if user inputs something weird
     while user_colour == 0:
@@ -239,11 +245,13 @@ if game_type == 'C':
         colour_input = input('Please enter either Y or R: ')
         if colour_input.lower() == 'r':
             user_colour = colored("R", 'red')
+            player_name = colored(player_name, 'red')
             comp_colour = colored("Y", 'yellow')
             print(
                 f'Okay, you are the', colored('Red', 'red'), f' player, you will play with counter {user_colour}!')
         elif colour_input.lower() == 'y':
             user_colour = colored("Y", 'yellow')
+            player_name = colored(player_name, 'yellow')
             comp_colour = colored("R", 'red')
             print(
                 'Okay, you are the', colored('Yellow', 'yellow'), f' player, you will play with counter {user_colour}!')
