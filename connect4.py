@@ -263,6 +263,7 @@ if game_type == 'C':
         print('Tails, the computer will start.')
     elif coin == 1:
         print('Heads, you will start.')
+        print_board(board)
         placing_counter(get_col(player_name), board, user_colour)
         print_board(board)
 
@@ -322,10 +323,12 @@ else:
     coin = random.randint(0, 1)
     if coin == 0:
         print(f'Tails, {user2_name} will start.')
+        print_board(board)
         placing_counter(get_col(user2_name), board, user2_colour)
         print_board(board)
     elif coin == 1:
         print(f'Heads, {user1_name} will start.')
+        print_board(board)
 
     while win_status == False:
         win_status, current_player = placing_counter(
